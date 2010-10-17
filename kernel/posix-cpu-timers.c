@@ -526,7 +526,7 @@ void posix_cpu_timers_exit_group(struct task_struct *tsk)
 	cleanup_timers(tsk->signal->cpu_timers,
 		       cputime_add(tsk->utime, sig->utime),
 		       cputime_add(tsk->stime, sig->stime),
-		       tsk->se.sum_exec_runtime + sig->sum_sched_runtime);
+		       tsk_seruntime(tsk) + sig->sum_sched_runtime);
 }
 
 static void clear_dead_task(struct k_itimer *timer, union cpu_time_count now)
